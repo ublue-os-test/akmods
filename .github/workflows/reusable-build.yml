@@ -111,7 +111,8 @@ jobs:
       - name: Retrieve akmods signing key
         run: |
           mkdir -p certs
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+          if [[ "${{ github.event_name }}" == "pull_request" ]] || \
+             [[ "${{ github.repository_owner }} != "ublue-os" ]] ; then
               echo "Using test signing key"
           else
               echo "${{ secrets.AKMOD_PRIVKEY_20230518 }}" > certs/private_key.priv
